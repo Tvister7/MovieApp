@@ -71,10 +71,10 @@ def search_movie(search_term):
         cursor.execute(SEARCH_MOVIE, (f"%{search_term}%",))
         return cursor.fetchall()
 
+
 def watch_movie(username, movie_id):
     with connection:
         connection.execute(INSERT_WATCHED_MOVIE, (username, movie_id))
-        return cursor.fetchall()
 
 
 def get_watched_movies(username):
