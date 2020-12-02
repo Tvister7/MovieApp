@@ -8,8 +8,9 @@ menu = """Выберете одну из предложенных опций:
 3)Посмотреть список всех фильмов
 4)Отметить просмотренный фильм
 5)Просмотреть список просмотренных фильмов
-6)Добавить пользователя
-7)Выход
+6)Найти фильм
+7)Добавить пользователя
+8)Выход
 
 Ваш выбор: """
 welcome = "Добро пожаловать в органайзер фильмов!"
@@ -41,6 +42,15 @@ def print_movie_list(heading, movies):
     print("---- \n")
 
 
+def prompt_search_movie():
+    search_term = input("Введи часть названия: ")
+    movie = database.search_movie(search_term)
+    if movie:
+        print_movie_list("Возможно эти", movie)
+    else:
+        print("Таких фильмов нет :(")
+
+
 def prompt_watch_movie():
     username = input("Введи имя: ")
     movie_id = input("Введите ID фильма: ")
@@ -57,7 +67,7 @@ def prompt_show_watched_movies():
         print("Список пуст!")
 
 
-while (user_input := input(menu)) != "7":
+while (user_input := input(menu)) != "8":
     if user_input == '1':
         prompt_add_movie()
     elif user_input == '2':
@@ -72,6 +82,8 @@ while (user_input := input(menu)) != "7":
     elif user_input == '5':
         prompt_show_watched_movies()
     elif user_input == '6':
+        prompt_search_movie()
+    elif user_input == '7':
         prompt_add_user()
     else:
         print("Неверная команда, попробуйте еще раз")
